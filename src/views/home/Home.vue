@@ -1,18 +1,23 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+     <tab-control :titles="['流行','新款','精选']" 
+                    ref="tabControl1"
+                   @tbClick="tbClick"
+                   class="tabControl"
+                   v-show="isTabFixd"></tab-control>
    <scroll  class="content" 
             ref="scroll" 
             :probe-type="3" 
             @scroll="scroll"
             :pull-up-load="true"
             @pullingUp="loadMore">
-      <home-swiper :banners="banners"></home-swiper>
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
-      <tab-control class="tab"
-            :titles="['流行','新款','精选']" 
-            @tbClick="tbClick"></tab-control>
+      <tab-control :titles="['流行','新款','精选']" 
+                    ref="tabControl2"
+                   @tbClick="tbClick"></tab-control>
       <goods-list :goods="showGoods"></goods-list>
    </scroll>
    <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
@@ -34,6 +39,7 @@ import BackTop from'components/common/backTop/BackTop'
 
 //功能组件
 import {getHomeMultidata,getHomeGoods} from "network/home";//路由加载
+import {debounce} from 'common/utils' ////防抖函数
 
 export default {
   name:"Home",
@@ -58,13 +64,23 @@ export default {
         'sell':{page:0,list:[]}
       },
       currentType:'pop',
-      isShowBackTop:false
+      isShowBackTop:false,
+      tabOffsetTop:0,
+      isTabFixd:false,
+      saveY: 0
     }
   },
   computed: {
     showGoods(){
     return this.goods[this.currentType].list
     }
+  },
+  activated() {
+    this.$refs.scroll.refresh()
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.scroll.y
   },
   created(){
     //请求首页广告数据
@@ -73,11 +89,23 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
+
+  },
+  mounted() {
+    const refresh = debounce( this.$refs.scroll.refresh,200)
+    //监听itme图片加载完成
+    this.$bus.$on('itemIamgLoad',() =>{
+      refresh();
+    })
   },
   methods:{
     /**
      * 事件监听
      */
+    swiperImageLoad(){
+      // console.log(this.$refs.tabControl.$el.offsetTop);
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+    },
     tbClick(index){
       switch(index){
         case 0:
@@ -90,6 +118,8 @@ export default {
           this.currentType = 'sell'
         break;
       }
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     //回到顶部
     backClick(){
@@ -97,7 +127,10 @@ export default {
     },
     //确认显示还是隐藏 回到顶部
     scroll(position){
+      //1. 判断BackTop是否显示
       this.isShowBackTop = -position.y > 1000
+      // 2.决定tabControl是否吸顶 (position:fiexd)
+      this.isTabFixd = (-position.y) > this.tabOffsetTop
     },
     //加载更多
     loadMore(){
@@ -136,17 +169,6 @@ export default {
   .home-nav{
     background-color: var(--color-tint);
     color: #ffffff;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 10;
-  }
-  .tab{
-    position: sticky;
-    top:44px;
-    background-color: #ffffff;
-    z-index: 9;
   }
   .content{
     /* height: 300px; */
@@ -157,5 +179,10 @@ export default {
     right: 0;
     /* background-color: #fff; */
     overflow: hidden;
+  }
+  .tabControl{
+    position: relative;
+    z-index: 9;
+    background-color: #ffffff;
   }
 </style>

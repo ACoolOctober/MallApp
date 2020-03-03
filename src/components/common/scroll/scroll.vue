@@ -33,23 +33,30 @@ export default {
       pullUpLoad:this.pullUpLoad
     })
     //监听滚动的位置
-    this.scroll.on('scroll',(position) =>{
+    if(this.probeType === 2 || this.probeType ===3){
+      this.scroll.on('scroll',(position) =>{
      this.$emit('scroll',position)
     })
+    }
     //监听上拉加载更多
-    this.scroll.on("pullingUp",() =>{
+    if(this.pullUpLoad){
+      this.scroll.on("pullingUp",() =>{
       this.$emit('pullingUp')
     })
+    }
   },
   methods: {
     //返回到顶部
     scrollTo(x,y,time=300){
-      this.scroll.scrollTo(x,y,time)
+      this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x,y,time)
     },
     finishPullUp(){
       this.scroll.finishPullUp()
+    },
+    refresh(){
+      this.scroll && this.scroll.scrollTo && this.scroll.refresh()
     }
-  },
+  }
 }
 </script>
 
