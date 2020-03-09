@@ -1,6 +1,6 @@
 <template>
   <div class="goods-itme" @click="itemClick">
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad">
+    <img v-lazy="showImage" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -21,13 +21,39 @@ export default {
       }
     }
   },
+  computed: {
+    showImage(){
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+  },
   methods: {
     //
     imgLoad(){
-      this.$bus.$emit('itemIamgLoad')
+      // 判断是哪个路由活跃用以判断是首页还是推荐页的监听事件
+      //首页
+      /*
+      按理说这样应该是反的，但是这样写却又是可以正确获得
+      */
+      if(this.$route.path.indexOf('/home')){
+        this.$bus.$emit('DetailItemIamgLoad')
+      }
+      // 详情页
+      else if(this.$route.path.indexOf('/detail')){
+        this.$bus.$emit('itemIamgLoad')
+      
+      }
+      // this.$bus.$emit('itemIamgLoad')
     },
     itemClick(){
-      this.$router.push('/detail/' + this.goodsItem.iid)
+      if(this.goodsItem.iid){
+        this.$router.push('/detail/' + this.goodsItem.iid)
+      }
+        
+      else{
+         return this.$toast.show('推荐商品暂未上架',1200)
+        //this.$router.push('/detail/' + this.goodsItem.item_id)
+      }
+        
     }
   },
 }

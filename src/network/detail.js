@@ -16,6 +16,12 @@ export class Goods{
     this.discount = itemInfo.discountDesc;
     this.columns = columns;
     this.services = service;
+    this.realPrice = itemInfo.lowNowPrice;
   }
 }
 
+export function getRecommend(){
+  return request({
+    url:'/recommend'
+  })
+}

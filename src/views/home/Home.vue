@@ -55,7 +55,6 @@ export default {
   },
   data(){
     return{
-      // result=null,
       banners:[],
       recommends:[],
       goods:{
@@ -80,6 +79,7 @@ export default {
     this.$refs.scroll.scrollTo(0,this.saveY,0)
   },
   deactivated() {
+    //保存Y值
     this.saveY = this.$refs.scroll.scroll.y
   },
   created(){

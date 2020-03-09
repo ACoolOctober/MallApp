@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
   .swiper-image{
-    height: 300px;
+    height: 414px;
     overflow: hidden;
   }
   .swiper-image img{

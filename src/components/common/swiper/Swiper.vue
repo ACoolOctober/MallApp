@@ -46,12 +46,12 @@
     },
     mounted () {
       // 1.操作DOM, 在前后添加Slide
+      // 延迟执行 让图片数据加载完成并挂载
       setTimeout(() => {
         this.handleDom();
- 
         // 2.开启定时器
         this.startTimer();
-      }, 100)
+      }, 250)
     },
     methods: {
           /**
@@ -73,7 +73,7 @@
       scrollContent (currentPosition) {
         // 0.设置正在滚动
         this.scrolling = true;
- 
+        
         // 1.开始滚动动画
         this.swiperStyle.transition ='transform '+ this.animDuration + 'ms';
         this.setTransform(currentPosition);
