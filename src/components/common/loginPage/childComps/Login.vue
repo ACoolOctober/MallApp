@@ -1,6 +1,6 @@
 <template>
   <div id="login" class="dom" >
-    <form action="http://192.168.43.88:3000/login" method="post">
+    <form autocomplete="off" @submit.prevent="onSubmit" action="http://localhost:3000/login" method="post">
       <div class="s1">
         <h4>账号</h4>
         <input v-validate="'required|phone'" name="phone" type="text"  placeholder="注册手机" />

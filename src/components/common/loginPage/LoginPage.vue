@@ -50,6 +50,7 @@
 
 <style>
   @import url('./LoginPage.css');
+  
   .text-style{
     color: red;
   }

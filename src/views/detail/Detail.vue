@@ -171,8 +171,8 @@ export default {
         this.topY.push(this.$refs.pj.$el.offsetTop);
         this.topY.push(this.$refs.goods.$el.offsetTop);
         this.topY.push(this.$refs.tj.$el.offsetTop);
-        // console.log(this.topY);
-      },1000)
+         //console.log(this.topY);
+      },3500)//延迟3.5s计算高度 因为图片加载较慢
     })
   },
 }

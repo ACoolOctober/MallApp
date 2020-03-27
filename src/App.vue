@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- <keep-alive exclude="Detail">
+    <keep-alive exclude="Detail">
       <router-view></router-view>
-    </keep-alive> -->
-     <login></login>
-    <!-- <main-tab-bar></main-tab-bar> -->
+    </keep-alive>
+     <!-- <login></login> -->
+    <main-tab-bar></main-tab-bar>
   </div>
 </template>
 

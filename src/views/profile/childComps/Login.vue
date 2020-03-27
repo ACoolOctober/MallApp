@@ -4,7 +4,7 @@
       <img class="user-pic-img" src="~assets/img/profile/头像.png" alt="">
     </div>
     <div class="user-info">
-      <p>登录/注册</p>
+      <p @click="toLoginPage">登录/注册</p>
       <div class="phone-num">
         <img alt="" class="icon-phone" src='~assets/img/profile/头像.png' />
         <p>暂未绑定手机号</p>
@@ -23,7 +23,12 @@ export default {
     return {
       
     };
-  }
+  },
+  methods: {
+    toLoginPage(){
+     this.$router.replace('/loginPage')
+    }
+  },
 };
 </script>
 
