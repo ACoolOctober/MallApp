@@ -6,6 +6,9 @@ import store from './store'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
 
+//表单验证
+import './utils/validate'
+
 // 自定义组件  消息框提醒
 import toast from './components/common/toast'
 
@@ -29,6 +32,9 @@ Vue.prototype.$bus = new Vue();
 
 //监听图片加载用
 Vue.prototype.$bus = new Vue()
+
+
+
 
 new Vue({
   router,

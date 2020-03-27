@@ -1,0 +1,63 @@
+<template>
+  <div class="profile-list">
+    <div class="profile-list-item">
+      <span>我的消息</span>
+    </div>
+    <div class="profile-list-item">
+      <span>全部订单</span>
+    </div>
+    <div class="profile-list-item">
+      <span>待点评</span>
+    </div>
+    <div class="profile-list-item">
+      <span>积分商城</span>
+    </div>
+    <div class="profile-list-item">
+      <span style="border-bottom: 0;">会员卡</span>
+    </div>
+    <div class="line"></div>
+    <div class="profile-list-item">
+      <span>我的收藏夹</span>
+    </div>
+    <div class="profile-list-item">
+      <span>点赞购物APP</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "profileList"
+};
+</script>
+
+<style scoped>
+.profile-list {
+  width: 100%;
+}
+.profile-list-item {
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding-left: 20px;
+}
+.profile-list-item .profile-list-icon {
+  font-size: 24px;
+  display: inline-block;
+  margin-right: 7px;
+}
+.profile-list-item span {
+  font-size: 16px;
+  display: inline-block;
+  width: 100%;
+  color: #333333;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 10px;
+}
+.line {
+  width: 100%;
+  height: 10px;
+  background-color: #eeeeee;
+}
+</style>
