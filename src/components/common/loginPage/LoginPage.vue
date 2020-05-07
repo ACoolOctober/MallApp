@@ -14,7 +14,7 @@
     <!--内容-->
     <div class="content-body">
         <login v-if="isShow" @toZC='tabRegister'></login>
-        <register v-else></register>
+        <register v-else @zcOK='tabClick'></register>
         
     </div>
 </div>

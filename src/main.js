@@ -6,11 +6,17 @@ import store from './store'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
 
-//表单验证
-import './utils/validate'
+//表单验证 弃用
+//import './utils/validate'
+
+// 导入字体图标
+import './assets/fonts/iconfont.css'
 
 // 自定义组件  消息框提醒
 import toast from './components/common/toast'
+
+import './plugins/element.js'
+
 
 // 安装toast
 Vue.use(toast)
@@ -32,6 +38,28 @@ Vue.prototype.$bus = new Vue();
 
 //监听图片加载用
 Vue.prototype.$bus = new Vue()
+
+//导入axios网络请求
+import axios from 'axios'
+axios.defaults.baseURL='https://localhost:44369/api/'
+// 设置拦截器
+// // 在request拦截器中 展示进度条 NProgress.start();
+// axios.interceptors.request.use(config =>{
+//   NProgress.start();
+//   config.headers.Authorization = window.sessionStorage.getItem('token')
+//   // 在最后必须 返回config
+//   return config
+// })
+
+// // 在reponse拦截器中 隐藏进度条 NProgress.done();
+// axios.interceptors.response.use(config => {
+//   NProgress.done();
+//   return config
+// })
+
+// 进行全局挂载
+Vue.prototype.$http = axios
+
 
 
 
