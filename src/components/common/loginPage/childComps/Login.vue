@@ -1,4 +1,27 @@
 <template>
+<<<<<<< HEAD
+  <div id="login" class="dom" >
+    <form autocomplete="off" @submit.prevent="onSubmit" action="http://localhost:3000/login" method="post">
+      <div class="s1">
+        <h4>账号</h4>
+        <input v-validate="'required|phone'" name="phone" type="text"  placeholder="注册手机" />
+        <span v-show="errors.has('phone')" class="text-style"> {{ errors.first('phone') }} </span>  
+      </div>
+      <div class="s1">
+        <h4>密码</h4>
+        <input name="userPwd" v-validate="'required|userPwd'" type="password"  placeholder="请输入密码" />
+        <span v-show="errors.has('userPwd')" class="text-style"> {{ errors.first('userPwd') }} </span> 
+      </div>
+      <div class="s2">
+        <input type="checkbox" />
+        <span>记住密码</span>
+      </div>
+      <input type="submit" class="btn" value="登     录" />
+    </form>
+    <div class="dom-footer">
+      <div class="login-another">
+        <a href="#">找回密码</a>
+=======
   <div id="login" class="dom">
     <el-form
       ref="loginFormRef"
@@ -36,16 +59,51 @@
     <div class="dom-footer">
       <div class="login-another">
         <a href="#" @click="toForgetPWD">找回密码</a>
+>>>>>>> 完成登录注册开发与测试
         <span>|</span>
         <span>还没有注册帐号?</span>
         <a href="#" @click="toRegister">立即注册</a>
       </div>
+<<<<<<< HEAD
+     <third-platform></third-platform>
+=======
       <third-platform></third-platform>
+>>>>>>> 完成登录注册开发与测试
     </div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
+  import ThirdPlatform from './ThirdPlatform'
+
+  export default {
+    name:'Login',
+    components:{
+      ThirdPlatform
+    },
+    methods: {
+      toRegister(){
+        this.$emit('toZC')
+      },
+      // 表单拦截
+       onSubmit(){
+       this.$validator.validate().then(result => {
+        if (!result) {
+        	 console.log('验证不通过');
+            return 
+        } else {
+         	 console.log('验证通过');
+        }
+      })
+     },
+    },
+  };
+</script>
+
+<style>
+  
+=======
 import ThirdPlatform from "./ThirdPlatform";
 
 export default {
@@ -120,4 +178,5 @@ export default {
 </script>
 
 <style>
+>>>>>>> 完成登录注册开发与测试
 </style>

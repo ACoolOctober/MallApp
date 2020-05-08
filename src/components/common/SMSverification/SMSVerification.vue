@@ -26,7 +26,8 @@ export default {
       code:''
     };
   },
-  props:['phone'],
+  //codeIsOK 验证是否通过 默认为false
+  props:['phone','codeIsOK'],
   methods: {
     // <!--发送验证码-->
     sendCode() {

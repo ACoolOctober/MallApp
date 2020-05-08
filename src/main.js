@@ -6,18 +6,26 @@ import store from './store'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
 
+<<<<<<< HEAD
+//表单验证
+import './utils/validate'
+=======
 //表单验证 弃用
 //import './utils/validate'
 
 // 导入字体图标
 import './assets/fonts/iconfont.css'
+>>>>>>> 完成登录注册开发与测试
 
 // 自定义组件  消息框提醒
 import toast from './components/common/toast'
 
+<<<<<<< HEAD
+=======
 import './plugins/element.js'
 
 
+>>>>>>> 完成登录注册开发与测试
 // 安装toast
 Vue.use(toast)
 
@@ -39,6 +47,8 @@ Vue.prototype.$bus = new Vue();
 //监听图片加载用
 Vue.prototype.$bus = new Vue()
 
+<<<<<<< HEAD
+=======
 //导入axios网络请求
 import axios from 'axios'
 axios.defaults.baseURL='https://localhost:44369/api/'
@@ -61,6 +71,7 @@ axios.defaults.baseURL='https://localhost:44369/api/'
 Vue.prototype.$http = axios
 
 
+>>>>>>> 完成登录注册开发与测试
 
 
 

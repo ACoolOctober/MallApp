@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+<template>
+=======
 ﻿<template>
+>>>>>>> 完成登录注册开发与测试
   <div class="wrapper" ref="wrapper">
     <div class="content">
       <slot></slot>

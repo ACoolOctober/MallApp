@@ -14,7 +14,11 @@
     <!--内容-->
     <div class="content-body">
         <login v-if="isShow" @toZC='tabRegister'></login>
+<<<<<<< HEAD
+        <register v-else></register>
+=======
         <register v-else @zcOK='tabClick'></register>
+>>>>>>> 完成登录注册开发与测试
         
     </div>
 </div>
