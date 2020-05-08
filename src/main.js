@@ -69,7 +69,7 @@ axios.defaults.baseURL='https://localhost:44369/api/'
 
 // 进行全局挂载
 Vue.prototype.$http = axios
-
+//ces 
 
 >>>>>>> 完成登录注册开发与测试
 
